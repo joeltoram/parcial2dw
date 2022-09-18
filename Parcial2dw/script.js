@@ -126,6 +126,7 @@ function setGenre() {
     
 
 }
+
 seleccion();
 function seleccion(){
     genres.forEach(genero=>{
@@ -135,9 +136,12 @@ function seleccion(){
        select.add(option);
 
     })
-
 }
-
+select.addEventListener('change', (e) =>{
+    fetch(`${URL}&with_genres=${parseInt(select.value)}`).then(res => res.json()).then(data => {
+                showMovies(data.results)
+            });
+});
 
 
 
